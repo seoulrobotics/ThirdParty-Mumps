@@ -1,6 +1,6 @@
 C
-C  This file is part of MUMPS 5.7.0, released
-C  on Tue Apr 23 10:25:09 UTC 2024
+C  This file is part of MUMPS 5.7.3, released
+C  on Mon Jul 15 11:44:21 UTC 2024
 C
 C
 C  Copyright 1991-2024 CERFACS, CNRS, ENS Lyon, INP Toulouse, Inria,
@@ -2537,8 +2537,9 @@ C       We check the number of threads.
             id%INFO(1)=-58
             id%INFO(2)=KEEP(400)
             IF (LPOK) WRITE(LP,'(A,A,I5,A,I5)')
-     &" FAILURE DETECTED IN FACTORIZATION: #threads for KEEP(401)",
-     &" changed from",KEEP(400)," at analysis to", NOMP
+     &" FAILURE DETECTED IN FACTORIZATION: #threads for multithreaded",
+     &" tree parallelism changed from",KEEP(400)," at analysis to", 
+     &  NOMP
           ENDIF
 C       error check
         CALL MUMPS_PROPINFO( ICNTL(1), id%INFO(1),
@@ -2852,7 +2853,7 @@ C
 C       Store size of receive buffers in CMUMPS_LBUF module
         CALL CMUMPS_BUF_DIST_IRECV_SIZE( CMUMPS_LBUFR_BYTES )
         IF (PROK) THEN
-          WRITE( MP, 170 ) MAXS, MAXIS, id%KEEP8(12), KEEP(15),
+          WRITE( MP, 170 ) MAXS, MAXIS, MAXS_BASE8, KEEP(15),
      &    id%KEEP8(26), id%KEEP8(27), id%KEEP8(11), KEEP(26), KEEP(27)
         ENDIF
       END IF
